@@ -20,6 +20,7 @@ def read_input_from_local(file_path: str) -> str:
   with open(file_path, 'r') as file:
     return file.read()
 
+
 def download_input_from_online(script_path, input_file='input.txt'):
   cur_dir = os.path.dirname(script_path)
   year, day = get_year_day(script_path)
@@ -30,6 +31,7 @@ def download_input_from_online(script_path, input_file='input.txt'):
   except Exception as e:
   # except requests.exceptions.RequestException as e:
     print(f"Failed to download file: {e}")
+    return
 
   file_path = os.path.join(cur_dir, input_file)
   with open(file_path, 'wb') as file:
