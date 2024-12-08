@@ -14,6 +14,12 @@ class Day(Solution):
         pass
 
 
-Day(__file__).solve_part_1()
+test_input_file = 'test_input.txt'
+input_file = 'input.txt'
+test_part_1_expected = None
+test_part_2_expected = None
 
-Day(__file__).solve_part_2()
+solve(day=Day, script_path=__file__,
+      test_input_file=test_input_file, input_file=input_file,
+      test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
+      )

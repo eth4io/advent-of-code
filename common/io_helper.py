@@ -16,6 +16,13 @@ def read_input(script_path, input_file='input.txt') -> str:
   return read_input_from_local(file_path)
 
 
+def read_test_input(script_path, input_file='test_input.txt') -> str:
+  cur_dir = os.path.dirname(script_path)
+  file_path = os.path.join(cur_dir, input_file)
+
+  return read_input_from_local(file_path)
+
+
 def read_input_from_local(file_path: str) -> str:
   with open(file_path, 'r') as file:
     return file.read()
