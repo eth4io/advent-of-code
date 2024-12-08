@@ -29,7 +29,6 @@ def download_input_from_online(script_path, input_file='input.txt'):
   try:
     data = get_data(session=session_id, day=int(day), year=year)
   except Exception as e:
-  # except requests.exceptions.RequestException as e:
     print(f"Failed to download file: {e}")
     return
 
