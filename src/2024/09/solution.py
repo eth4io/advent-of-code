@@ -1,4 +1,4 @@
-from common.utils import *
+from src.common.utils import *
 
 class Day(Solution):
 

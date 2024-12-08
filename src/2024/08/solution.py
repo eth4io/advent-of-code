@@ -1,31 +1,23 @@
-from common.utils import *
+from src.common.utils import *
 
 class Day(Solution):
-    r_n: int
-    c_n: int
 
     def setup(self):
-        self.r_n = len(self.input_lines)
-        self.c_n = len(self.input_lines[0])
+        self.g = Grid(self.input_lines)
 
 
-    def get_antennas(self, lines: str):
+    def get_antennas(self, g: Grid):
         antennas = defaultdict(set)
-        for r in range(len(lines)):
-            for c in range(len(lines[r])):
-                char = lines[r][c]
+        for y in range(g.y_n):
+            for x in range(g.x_n):
+                char = g.get(y, x)
                 if char != '.':
-                    antennas[char].add((r, c))
+                    antennas[char].add((y, x))
 
         return antennas
 
 
-    def is_in_range(self, coord: (int, int)):
-        r, c = coord
-        return r >= 0 and r < self.r_n and c >= 0 and c < self.c_n
-
-
-    def get_antinode(self, a: (int, int), b: (int, int)) -> (int, int):
+    def get_antinode(self, a: (int, int), b: (int, int)) -> tuple[int, int]:
         xa, ya = a
         xb, yb = b
         return xb - xa + xb, yb - ya + yb
@@ -36,7 +28,7 @@ class Day(Solution):
         p0 = a
         p1 = b
         next = self.get_antinode(p0, p1)
-        while self.is_in_range(next):
+        while self.g.is_in_range(next):
             antinodes.add(next)
             p0 = p1
             p1 = next
@@ -46,27 +38,23 @@ class Day(Solution):
 
 
     def part_1(self):
-        lines = self.input_lines
-
-        antennas = self.get_antennas(lines)
+        antennas = self.get_antennas(self.g)
         antitodes = set()
         for key in antennas.keys():
             pairs = list(combinations(antennas[key], 2))
             for a, b in pairs:
                 antinode = self.get_antinode(a, b)
-                if self.is_in_range(antinode):
+                if self.g.is_in_range(antinode):
                     antitodes.add(antinode)
                 antinode = self.get_antinode(b, a)
-                if self.is_in_range(antinode):
+                if self.g.is_in_range(antinode):
                     antitodes.add(antinode)
 
         return len(antitodes)
 
 
     def part_2(self):
-        lines = self.input_lines
-
-        antennas = self.get_antennas(lines)
+        antennas = self.get_antennas(self.g)
         ret = set()
         for key in antennas.keys():
             ret = ret.union(antennas[key])

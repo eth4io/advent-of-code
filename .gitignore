@@ -5,4 +5,4 @@ credentials.json
 
 # jetbrains
 .idea/
-*/__pycache__/
+**/__pycache__/

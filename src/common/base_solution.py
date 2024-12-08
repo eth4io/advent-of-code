@@ -1,5 +1,5 @@
-from common.io_helper import read_input, input_lines
-from common.colour_utils import colourify, Colour
+from src.common.io_helper import read_input, input_lines
+from src.common.colour_utils import colourify, Colour
 from time import time
 from typing import Callable
 

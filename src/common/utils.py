@@ -4,8 +4,10 @@ import re
 from enum import Enum
 from collections import Counter, defaultdict, OrderedDict
 from itertools import combinations
-from common.base_solution import Solution
-from common.colour_utils import colourify, Colour
+from src.common.base_solution import Solution
+from src.common.colour_utils import colourify, Colour
+from src.common.grid import Grid, Direction, DIRECTIONS_4, DIRECTIONS_8
+from src.common.graph import Graph
 
 def solve(day: Solution.__class__, script_path: str,
           test_input_file: str = 'test_input.txt', input_file: str = 'input.txt',
