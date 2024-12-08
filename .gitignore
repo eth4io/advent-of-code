@@ -1,5 +1,8 @@
 .DS_Store
-.idea/
 
 # credentials
 credentials.json
+
+# jetbrains
+.idea/
+*/__pycache__/

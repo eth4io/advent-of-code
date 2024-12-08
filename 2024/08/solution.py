@@ -14,7 +14,7 @@ class Day8(Solution):
         for r in range(len(lines)):
             for c in range(len(lines[r])):
                 char = lines[r][c]
-                if isalnum(char):
+                if char != '.':
                     antennas[char].add((r, c))
 
         return antennas
