@@ -68,12 +68,18 @@ class Day(Solution):
         return len(ret)
 
 
+# test
 test_input_file = 'test_input.txt'
-input_file = 'input.txt'
 test_part_1_expected = 14
 test_part_2_expected = 34
+
+# real
+input_file = 'input.txt'
+part_1_expected = 299
+part_2_expected = 1032
 
 solve(day=Day, script_path=__file__,
       test_input_file=test_input_file, input_file=input_file,
       test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
+      part_1_expected=part_1_expected, part_2_expected=part_2_expected,
       )

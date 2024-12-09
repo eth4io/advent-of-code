@@ -14,12 +14,19 @@ class Day(Solution):
         pass
 
 
+
+# test
 test_input_file = 'test_input.txt'
-input_file = 'input.txt'
 test_part_1_expected = None
 test_part_2_expected = None
+
+# real
+input_file = 'input.txt'
+part_1_expected = None
+part_2_expected = None
 
 solve(day=Day, script_path=__file__,
       test_input_file=test_input_file, input_file=input_file,
       test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
+      part_1_expected=test_part_1_expected, part_2_expected=test_part_2_expected,
       )
