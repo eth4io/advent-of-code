@@ -2,6 +2,15 @@ from src.common.io_helper import read_input, input_lines
 from src.common.colour_utils import colourify, Colour
 from time import time
 from typing import Callable
+from dataclasses import dataclass
+
+@dataclass
+class Result:
+  result: int or str
+  setup_time: float
+  run_time: float
+  total_time: float
+
 
 class Solution:
   input: str
@@ -25,7 +34,7 @@ class Solution:
     print('no part 2')
 
 
-  def solve(self, title: str, method: Callable, expected: int=None) -> bool:
+  def get_result(self, method: Callable) -> Result:
     t0 = time()
     self.setup()
 
@@ -37,15 +46,5 @@ class Solution:
     result = method()
 
     total_time = time() - t0
-    display_time = f"time: {colourify(Colour.PINK, f'{total_time:.2f}')}s"
-    if expected is None:
-      display_result = f"result: {colourify(Colour.ORANGE, result)}"
-    else:
-      if result == expected:
-        display_result = f"{colourify(Colour.GREEN, '[pass]')} result: {colourify(Colour.GREEN, result)} == expected {colourify(Colour.GREEN, expected)}"
-      else:
-        display_result = f"{colourify(Colour.RED, '[fail]')} result: {colourify(Colour.GREEN, result)} != expected {colourify(Colour.GREEN, expected)}"
 
-    display = ' | '.join([title, display_result, display_time])
-    print(display)
-    return result == expected
+    return Result(result=result, setup_time=setup_time, total_time=total_time, run_time=total_time-setup_time)
