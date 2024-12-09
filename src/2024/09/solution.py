@@ -5,10 +5,6 @@ class Day(Solution):
 
   def setup(self):
     self.disk = [int(num) for num in self.input_lines[0]]
-    self.total = 0
-    self.total_empty = 0
-    self.data = []
-    self.space = []
     self.EMPTY = None
     self.dict = SortedDict(int)
     self.empties = []

@@ -54,7 +54,7 @@ def get_session_id() -> str:
 
 
 def get_year_day(filepath: str) -> tuple:
-  pattern = r"advent_of_code\/src\/(\d{4})\/(\d{2})"
+  pattern = r"advent[-_]of[-_]code\/src\/(\d{4})\/(\d{2})"
   match = re.search(pattern, filepath)
   if match:
     year = match.group(1)
