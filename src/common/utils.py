@@ -3,6 +3,7 @@ import os
 import re
 from enum import Enum
 from collections import Counter, defaultdict, OrderedDict
+from sortedcontainers import SortedDict
 from itertools import combinations
 from src.common.base_solution import Solution
 from src.common.colour_utils import colourify, Colour
