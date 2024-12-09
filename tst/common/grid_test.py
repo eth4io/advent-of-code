@@ -30,8 +30,8 @@ class TestDirectionAndGrid(unittest.TestCase):
         self.assertEqual(self.grid.grid, expected_grid)
 
         # Test row and column counts
-        self.assertEqual(self.grid.row_count, 3)
-        self.assertEqual(self.grid.col_count, 4)
+        self.assertEqual(self.grid.y_n, 3)
+        self.assertEqual(self.grid.x_n, 4)
 
     def test_get(self):
         # Test valid indices
