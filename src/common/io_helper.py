@@ -46,7 +46,7 @@ def download_input_from_online(script_path, input_file='input.txt'):
 
 def get_session_id() -> str:
   cur_dir = os.path.dirname(__file__)
-  project_root = os.path.abspath(os.path.join(cur_dir, ".."))
+  project_root = os.path.abspath(os.path.join(cur_dir, "../.."))
   credentails_path = os.path.join(project_root, 'credentials.json')
   with open(credentails_path) as json_file:
         items = json.load(json_file)
@@ -54,7 +54,7 @@ def get_session_id() -> str:
 
 
 def get_year_day(filepath: str) -> tuple:
-  pattern = r"advent_of_code\/(\d{4})\/(\d{2})"
+  pattern = r"advent_of_code\/src\/(\d{4})\/(\d{2})"
   match = re.search(pattern, filepath)
   if match:
     year = match.group(1)
