@@ -22,8 +22,8 @@ class Grid:
     x_n: int
 
 
-    def __init__(self, lines: list[str]):
-        self.grid = [[int(c) for c in line] for line in lines]
+    def __init__(self, lines: list[str], convert_to_int: bool=False):
+        self.grid = [[int(c) if convert_to_int else c for c in line] for line in lines]
         self.y_n = len(self.grid)
         self.x_n = len(self.grid[0])
 

@@ -3,7 +3,7 @@ from src.common.utils import *
 class Day(Solution):
 
   def setup(self):
-    self.g = Grid(self.input_lines)
+    self.g = Grid(self.input_lines, True)
     self.score = [[0] * self.g.x_n for _ in range(self.g.y_n)]
 
 
