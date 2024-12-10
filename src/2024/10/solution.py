@@ -4,7 +4,6 @@ class Day(Solution):
 
   def setup(self):
     self.g = Grid(self.input_lines).to_int()
-    self.score = [[0] * self.g.x_n for _ in range(self.g.y_n)]
 
 
   def part_1(self):
@@ -31,10 +30,11 @@ class Day(Solution):
 
   def part_2(self):
     self.g.build_cell_map()
+    score = [[0] * self.g.x_n for _ in range(self.g.y_n)]
 
     # 9
     for y, x in self.g.cell_map[9]:
-      self.score[y][x] = 1
+      score[y][x] = 1
 
     # 8 - 0
     for i in range(8, -1, -1):
@@ -43,12 +43,12 @@ class Day(Solution):
         for new_cell in self.g.get_all_in_range_moved(DIRECTIONS_4, cur):
           new_y, new_x = new_cell
           if self.g.get(new_cell) == self.g.get(cur) + 1:
-            self.score[y][x] += self.score[new_y][new_x]
+            score[y][x] += score[new_y][new_x]
 
 
     ret = 0
     for y, x in self.g.cell_map[0]:
-      ret += self.score[y][x]
+      ret += score[y][x]
 
     return ret
 
