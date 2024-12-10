@@ -45,7 +45,6 @@ class Day(Solution):
           if self.g.get(new_cell) == self.g.get(cur) + 1:
             score[y][x] += score[new_y][new_x]
 
-
     ret = 0
     for y, x in self.g.cell_map[0]:
       ret += score[y][x]
