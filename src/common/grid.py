@@ -31,6 +31,14 @@ class Grid:
         self.cell_map = defaultdict(list)
 
 
+    def __str__(self):
+        lines = ''
+        for row_index, row in enumerate(self.grid):
+            line = [f'{cell}' for cell in row]
+            lines += (' '.join(line)) + '\n'
+        return lines
+
+
     def to_int(self):
         self.grid = [[int(cell) for cell in row] for row in self.grid]
         return self
