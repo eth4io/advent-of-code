@@ -23,7 +23,7 @@ class Grid:
 
 
     def __init__(self, lines: list[str]):
-        self.grid = [[c for c in line] for line in lines]
+        self.grid = [[int(c) for c in line] for line in lines]
         self.y_n = len(self.grid)
         self.x_n = len(self.grid[0])
 
@@ -33,7 +33,7 @@ class Grid:
 
 
     def get_moved(self, direction: Direction, coordinates: [tuple[int, int] or list[int, int] or int], x: int = None) -> tuple[int, int]:
-        dy, dx = direction
+        dy, dx = direction.value
         if isinstance(coordinates, tuple) or isinstance(coordinates, list):
             y, x = coordinates
         else:

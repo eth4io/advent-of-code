@@ -1,6 +1,5 @@
 from src.common.utils import *
 
-
 class Day(Solution):
 
   def setup(self):
