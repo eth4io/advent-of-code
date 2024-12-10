@@ -6,7 +6,6 @@ class TestDirectionAndGrid(unittest.TestCase):
     def setUp(self):
         self.lines = ["aaaa", "bbbb", "cccc"]
         self.grid = Grid(self.lines)
-        print(self.grid.grid)
 
     def test_direction_enum(self):
         # Test values of DIRECTIONS_4
@@ -47,11 +46,11 @@ class TestDirectionAndGrid(unittest.TestCase):
     def test_get_moved(self):
         start_coordinates = (1, 1)  # 'b' at grid[1][1]
 
-        self.assertEqual(self.grid.get_moved(Direction.UP.value, start_coordinates), (0, 1))
-        self.assertEqual(self.grid.get_moved(Direction.DOWN.value, start_coordinates), (2, 1))
-        self.assertEqual(self.grid.get_moved(Direction.LEFT.value, start_coordinates), (1, 0))
-        self.assertEqual(self.grid.get_moved(Direction.RIGHT.value, start_coordinates), (1, 2))
-        self.assertEqual(self.grid.get_moved(Direction.UP_LEFT.value, start_coordinates), (0, 0))
+        self.assertEqual(Grid.get_moved(Direction.UP, start_coordinates), (0, 1))
+        self.assertEqual(Grid.get_moved(Direction.DOWN, start_coordinates), (2, 1))
+        self.assertEqual(Grid.get_moved(Direction.LEFT, start_coordinates), (1, 0))
+        self.assertEqual(Grid.get_moved(Direction.RIGHT, start_coordinates), (1, 2))
+        self.assertEqual(Grid.get_moved(Direction.UP_LEFT, start_coordinates), (0, 0))
 
     def test_is_in_range(self):
         # Test with valid coordinates

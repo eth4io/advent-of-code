@@ -3,7 +3,7 @@ from src.common.utils import *
 class Day(Solution):
 
   def setup(self):
-    self.g = Grid(self.input_lines, True)
+    self.g = Grid(self.input_lines).to_int()
     self.score = [[0] * self.g.x_n for _ in range(self.g.y_n)]
 
 
@@ -18,14 +18,13 @@ class Day(Solution):
 
         dfs = [(y, x)]
 
-        for cur_y, cur_x in dfs:
-          if self.g.get(cur_y, cur_x) == 9 and (cur_y, cur_x) not in visited:
+        for cur in dfs:
+          if self.g.get(cur) == 9 and cur not in visited:
             ret += 1
-            visited.add((cur_y, cur_x))
-          for dir in DIRECTIONS_4:
-            new_y, new_x = self.g.get_moved(dir, cur_y, cur_x)
-            if self.g.is_in_range(new_y, new_x) and self.g.get(new_y, new_x) == self.g.get(cur_y, cur_x)+1:
-              dfs.append((new_y, new_x))
+            visited.add(cur)
+          for new_cell in self.g.get_all_in_range_moved(DIRECTIONS_4, cur):
+            if self.g.get(new_cell) == self.g.get(cur) + 1:
+              dfs.append(new_cell)
 
     return ret
 
