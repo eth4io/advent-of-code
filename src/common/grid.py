@@ -15,6 +15,7 @@ class Direction(Enum):
 
 DIRECTIONS_4 = [Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT]
 DIRECTIONS_8 = [Direction.UP, Direction.UP_RIGHT, Direction.RIGHT, Direction.DOWN_RIGHT, Direction.DOWN, Direction.DOWN_LEFT, Direction.LEFT, Direction.UP_LEFT]
+DIRECTIONS_DIAGONAL = [Direction.UP_RIGHT, Direction.DOWN_RIGHT, Direction.DOWN_LEFT, Direction.UP_LEFT]
 
 
 class Grid:
@@ -85,8 +86,3 @@ class Grid:
     else:
       y = coordinates
     return y + dy, x + dx
-
-
-lines =["aaaa", "bbbb", "cccc"]
-
-
