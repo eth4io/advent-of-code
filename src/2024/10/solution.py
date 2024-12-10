@@ -62,10 +62,10 @@ test_part_2_expected = 81
 # real
 input_file = 'input.txt'
 part_1_expected = 794
-part_1_expected_false = [None]
+part_1_expected_false = []
 
 part_2_expected = 1706
-part_2_expected_false = [None]
+part_2_expected_false = []
 
 solve(day=Day, script_path=__file__,
       test_input_file=test_input_file, input_file=input_file,

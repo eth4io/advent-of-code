@@ -39,7 +39,7 @@ def _verify(title: str, result: Result,
 def _solve(day: Solution.__class__, method: Callable, title: str,
           expected: int=None, expected_false: int or str or list[int] or list[str]=None):
   result = day.get_result(method)
-  return _verify(title, result, expected, expected_false)
+  return result.result and _verify(title, result, expected, expected_false)
 
 
 def solve(day: Solution.__class__, script_path: str,
