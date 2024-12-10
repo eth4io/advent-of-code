@@ -30,24 +30,25 @@ class Day(Solution):
 
 
   def part_2(self):
+    self.g.build_cell_map()
+
+    # 9
+    for y, x in self.g.cell_map[9]:
+      self.score[y][x] = 1
+
+    # 8 - 0
+    for i in range(8, -1, -1):
+      for cur in self.g.cell_map[i]:
+        y, x = cur
+        for new_cell in self.g.get_all_in_range_moved(DIRECTIONS_4, cur):
+          new_y, new_x = new_cell
+          if self.g.get(new_cell) == self.g.get(cur) + 1:
+            self.score[y][x] += self.score[new_y][new_x]
+
+
     ret = 0
-    for i in range(9, -1, -1):
-      for y in range(self.g.y_n):
-        for x in range(self.g.x_n):
-          if self.g.get(y, x) != i:
-            continue
-          if i == 9:
-            self.score[y][x] = 1
-            continue
-
-          for dir in DIRECTIONS_4:
-            new_y, new_x = self.g.get_moved(dir, y, x)
-            if self.g.is_in_range(new_y, new_x) and self.g.get(new_y, new_x) == i+1:
-              self.score[y][x] += self.score[new_y][new_x]
-
-          if i == 0:
-            ret += self.score[y][x]
-
+    for y, x in self.g.cell_map[0]:
+      ret += self.score[y][x]
 
     return ret
 

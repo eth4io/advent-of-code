@@ -21,13 +21,14 @@ class Grid:
     grid: list[list[str or int]]
     y_n: int
     x_n: int
-    cell_map: defaultdict()
+    cell_map: defaultdict
 
 
     def __init__(self, lines: list[str]):
         self.grid = [[c for c in line] for line in lines]
         self.y_n = len(self.grid)
         self.x_n = len(self.grid[0])
+        self.cell_map = defaultdict(list)
 
 
     def to_int(self):
@@ -60,6 +61,12 @@ class Grid:
         else:
             y = coordinates
         return 0 <= y < self.y_n and 0 <= x < self.x_n
+
+
+    def build_cell_map(self):
+        for row_index, row in enumerate(self.grid):
+            for col_index, cell in enumerate(row):
+                self.cell_map[cell].append((row_index, col_index))
 
 
     @staticmethod
