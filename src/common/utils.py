@@ -1,4 +1,5 @@
 import collections
+import sys
 import os
 import re
 from enum import Enum
@@ -15,6 +16,7 @@ from time import time
 from dataclasses import dataclass
 import inspect
 
+sys.setrecursionlimit(10**6)
 
 @dataclass
 class Result:
