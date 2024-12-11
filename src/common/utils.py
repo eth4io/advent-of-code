@@ -11,6 +11,7 @@ from src.common.colour_utils import colourify, Colour
 from src.common.grid import Grid, Direction, DIRECTIONS_4, DIRECTIONS_8
 from src.common.graph import Graph
 from src.common.base_solution import Result
+from functools import cache
 
 
 def _verify(title: str, result: Result,

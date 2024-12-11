@@ -3,7 +3,7 @@ from src.common.utils import *
 class Day(Solution):
 
   def setup(self):
-    pass
+    self.lines = self.input_lines
 
 
   def part_1(self):
