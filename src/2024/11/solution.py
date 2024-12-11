@@ -1,11 +1,10 @@
-
 from src.common.utils import *
 
 class Day(Solution):
 
   def setup(self):
     self.lines = self.input_lines
-    self.stones = [int(stone) for stone in self.lines[0].split(' ')]
+    self.stones = list(map(int, self.lines[0].split()))
 
 
   @cache
@@ -23,38 +22,26 @@ class Day(Solution):
     return self.split(num* 2024, n-1)
 
 
-  def part_1(self):
-    ret = 0
-    for stone in self.stones:
-      ret += self.split(stone, 25)
-
-    return ret
+  def part_1(self, blinks: int):
+    return sum(self.split(stone, blinks) for stone in self.stones)
 
 
-  def part_2(self):
-    ret = 0
-    for stone in self.stones:
-      ret += self.split(stone, 75)
-    return ret
+  def part_2(self, blinks: int):
+    return sum(self.split(stone, blinks) for stone in self.stones)
 
 
 
-test_input_file = 'test_input.txt'
-input_file = 'input.txt'
+# setup
+test_input_file, input_file = 'test_input.txt', 'input.txt'
+test, real = Day(__file__, test_input_file, '[test]'), Day(__file__, input_file, '[real]')
 
 # part 1
-test_part_1_expected = 55312
-part_1_expected = 184927
-part_1_expected_false = []
+print(colourify(Colour.LIGHT_BLUE, '------- part 1 -------'))
+assert_equal(lambda: test.part_1(6), 22, test.title)
+assert_equal(lambda: test.part_1(25), 55312, test.title)
+assert_equal(lambda: real.part_1(25), 184927, real.title)
 
 # part 2
-test_part_2_expected = 65601038650482
-part_2_expected = 220357186726677
-part_2_expected_false = []
-
-solve(day=Day, script_path=__file__,
-      test_input_file=test_input_file, input_file=input_file,
-      test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
-      part_1_expected=part_1_expected, part_2_expected=part_2_expected,
-      part_1_expected_false=part_1_expected_false, part_2_expected_false=part_2_expected_false,
-      )
+print(colourify(Colour.LIGHT_BLUE, '\n------- part 2 -------'))
+assert_equal(lambda: real.part_2(75), 220357186726677, real.title)
+assert_equal(lambda: real.part_2(75), title=real.title)

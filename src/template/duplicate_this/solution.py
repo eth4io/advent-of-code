@@ -15,22 +15,16 @@ class Day(Solution):
 
 
 
-test_input_file = 'test_input.txt'
-input_file = 'input.txt'
+# setup
+test_input_file, input_file = 'test_input.txt', 'input.txt'
+test, real = Day(__file__, test_input_file, '[test]'), Day(__file__, input_file, '[real]')
 
 # part 1
-test_part_1_expected = None
-part_1_expected = None
-part_1_expected_false = []
+print(colourify(Colour.LIGHT_BLUE, '------- part 1 -------'))
+assert_equal(lambda: test.part_1(), None, title=test.title)
+assert_equal(lambda: real.part_1(), None, title=real.title)
 
 # part 2
-test_part_2_expected = None
-part_2_expected = None
-part_2_expected_false = []
-
-solve(day=Day, script_path=__file__,
-      test_input_file=test_input_file, input_file=input_file,
-      test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
-      part_1_expected=part_1_expected, part_2_expected=part_2_expected,
-      part_1_expected_false=part_1_expected_false, part_2_expected_false=part_2_expected_false,
-      )
+print(colourify(Colour.LIGHT_BLUE, '\n------- part 2 -------'))
+assert_equal(lambda: real.part_2(), None, title=real.title)
+assert_equal(lambda: real.part_2(), None, title=real.title)

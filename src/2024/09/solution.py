@@ -102,25 +102,19 @@ class Day(Solution):
     return checksum
 
 
-# test
-test_input_file = 'test_input.txt'
-test_part_1_expected = 1928
-test_part_2_expected = 2858
 
-# real
-input_file = 'input.txt'
-part_1_expected = 6421128769094
-part_1_expected_false = [None]
+# setup
+test_input_file, input_file = 'test_input.txt', 'input.txt'
+test, real = Day(__file__, test_input_file), Day(__file__, input_file)
 
-part_2_expected = 6448168620520
-part_2_expected_false = [None]
+# part 1
+print(colourify(Colour.LIGHT_BLUE, '------- part 1 -------'))
+assert_equal(lambda: test.part_1(), 1928, 'test')
+assert_equal(lambda: real.part_1(), 6421128769094, 'real')
 
-solve(day=Day, script_path=__file__,
-      test_input_file=test_input_file, input_file=input_file,
-      test_part_1_expected=test_part_1_expected, test_part_2_expected=test_part_2_expected,
-      part_1_expected=part_1_expected, part_2_expected=part_2_expected,
-      part_1_expected_false=part_1_expected_false, part_2_expected_false=part_2_expected_false,
-      )
-
-
+print()
+# part 2
+print(colourify(Colour.LIGHT_BLUE, '------- part 2 -------'))
+assert_equal(lambda: test.part_2(), 2858, 'test')
+assert_equal(lambda: real.part_2(), 6448168620520, 'real')
 
