@@ -45,7 +45,26 @@ def assert_equal(func: Callable[..., any], expected: any=None, title: str=None, 
   if is_expected:
     display_result = f"{colourify(Colour.GREEN, '[pass]')} {colourify(Colour.GREEN, result.result)}"
   else:
-    display_result = f"{colourify(Colour.RED, '[fail]')} {colourify(Colour.GREEN, result.result)} != expected {colourify(Colour.GREEN, expected)}"
+    display_result = f"{colourify(Colour.RED, '[fail]')} {colourify(Colour.RED, result.result)} != expected {colourify(Colour.GREEN, expected)}"
+
+  printx([title, display_result, display_time, description])
+  return is_expected
+
+
+def assert_not_equal(func: Callable[..., any], expected: any=None, title: str=None, description: str=None) -> bool:
+  result = get_result(lambda: func())
+
+  display_time = f"time: {colourify(Colour.PINK, f'{result.duration:.2f}')}s"
+
+  if expected is None:
+    display_result = f"{colourify(Colour.ORANGE, '[submit]')} {colourify(Colour.ORANGE, result.result)}"
+    printx([title, display_result, display_time, description])
+    return False
+  is_expected = result.result == expected
+  if not is_expected:
+    display_result = f"{colourify(Colour.GREEN, '[pass]')} {colourify(Colour.GREEN, result.result)}"
+  else:
+    display_result = f"{colourify(Colour.RED, '[fail]')} {colourify(Colour.RED, result.result)} == expected false {colourify(Colour.GREEN, expected)}"
 
   printx([title, display_result, display_time, description])
   return is_expected
