@@ -6,32 +6,26 @@ class Day(Solution):
     self.g = Grid(self.input_lines)
 
 
-  def calc(self, plots: set[tuple[int, int]]):
-    peri = 0
-    for plot in plots:
-      for next in self.g.get_all_moved(DIRECTIONS_4, plot):
-        if not self.g.is_in_range(next) or next not in plots:
-          peri += 1
-
-    return peri * len(plots)
-
-
   def part_1(self):
     all_visited = set()
-    costs = []
+    costs = 0
     for r, row in enumerate(self.g.grid):
       for c, value in enumerate(row):
         cell = (r, c)
         if cell not in all_visited:
           visited = set()
           dfs = [cell]
+          peri = 0
           for cur in dfs:
             visited.add(cur)
-            for next in self.g.get_all_in_range_moved(DIRECTIONS_4, cur):
-              if next not in visited and next not in all_visited and self.g.get(next) == value:
+            for next in self.g.get_all_moved(DIRECTIONS_4, cur):
+              if next not self.g.is_in_range(next) or self.g.get(next) != value:
+                peri += 1
+                
+              if self.g.is_in_range(next) and next not in visited and self.g.get(next) == value:
                 dfs.append(next)
 
-          costs.append(self.calc(visited))
+          costs += peri * len(visited)
           all_visited = all_visited.union(visited)
 
     return sum(costs)
