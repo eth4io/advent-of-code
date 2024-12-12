@@ -30,10 +30,15 @@ class Day(Solution):
 
     return costs
 
-
+  
+  def get_fences(cell: tuple[int, int]):
+    
+    
+  def is_paid(cell: tuple[int, int], dir: Direction):
+    
 
   def part_2(self):
-    dic = defaultdict(list)
+    fenced = set()
     all_visited = set()
     costs = 0
     for r, row in enumerate(self.g.grid):
@@ -46,13 +51,13 @@ class Day(Solution):
           peri = 0
           for cur in dfs:
             for dir in DIRECTIONS_4:
-              for next in [self.g.get_moved(dir, cur)]:
-                if not self.g.is_in_range(next) or self.g.get(next) != value  and dic[(next, dir-1)] != value:
+              next = self.g.get_moved(dir, cur)
+              if not self.g.is_in_range(next) or self.g.get(next) != value and not is_paid(cur, dir):
                   peri += 1
-                elif self.g.is_in_range(next) and next not in visited and self.g.get(next) == value:
-                  visited.add(next)
-                  dfs.append(next)
-                  dic[(cell, dir)] = self.g.get(next)
+              elif self.g.is_in_range(next) and next not in visited and self.g.get(next) == value:
+                visited.add(next)
+                dfs.append(next)
+              fenced.add((cur, dir))
 
           costs += peri * len(visited)
           all_visited = all_visited.union(visited)
