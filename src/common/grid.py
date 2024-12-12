@@ -4,13 +4,14 @@ from enum import Enum
 class Direction(Enum):
   # [dy, dx]
   UP = [-1, 0]
+  RIGHT = [0, 1]
   DOWN = [1, 0]
   LEFT = [0, -1]
-  RIGHT = [0, 1]
-  UP_LEFT = [-1, -1]
   UP_RIGHT = [-1, 1]
-  DOWN_LEFT = [1, -1]
   DOWN_RIGHT = [1, 1]
+  DOWN_LEFT = [1, -1]
+  UP_LEFT = [-1, -1]
+  
 
 
 DIRECTIONS_4 = [Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT]
