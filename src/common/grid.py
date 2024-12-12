@@ -53,6 +53,16 @@ class Grid:
     return self.grid[y][x]
 
 
+  def get_all_moved(self, directions: list[Direction], coordinates: [tuple[int, int] or list[int, int] or int], x: int = None) -> list[tuple[int, int]]:
+    if isinstance(coordinates, tuple) or isinstance(coordinates, list):
+      y, x = coordinates
+    else:
+      y = coordinates
+    cell = (y, x)
+    all_moved = list(map(lambda direction: self.get_moved(direction, cell), directions))
+    return all_moved
+
+
   def get_all_in_range_moved(self, directions: list[Direction], coordinates: [tuple[int, int] or list[int, int] or int], x: int = None) -> list[tuple[int, int]]:
     if isinstance(coordinates, tuple) or isinstance(coordinates, list):
       y, x = coordinates
