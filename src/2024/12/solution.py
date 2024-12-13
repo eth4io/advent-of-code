@@ -4,7 +4,13 @@ class Day(Solution):
 
   def setup(self):
     self.g = Grid(self.input_lines)
-
+    self.lookup = {
+      Direction.UP: [Direction.LEFT, Direction.RIGHT],
+      Direction.DOWN: [Direction.LEFT, Direction.RIGHT],
+      Direction.LEFT: [Direction.UP, Direction.DOWN],
+      Direction.RIGHT: [Direction.UP, Direction.DOWN],
+    }
+    
 
   def part_1(self):
     all_visited = set()
@@ -30,15 +36,17 @@ class Day(Solution):
 
     return costs
 
-  
-  def get_fences(cell: tuple[int, int]):
-    
-    
+
   def is_paid(cell: tuple[int, int], dir: Direction):
-    
+    for fence in self.g.get_all_moved(self.lookup[dir], cell):
+      if fence in self.fences():
+        return True
+
+    return False
+
 
   def part_2(self):
-    fenced = set()
+    self.fenced = set()
     all_visited = set()
     costs = 0
     for r, row in enumerate(self.g.grid):
@@ -59,11 +67,29 @@ class Day(Solution):
                 dfs.append(next)
               fenced.add((cur, dir))
 
-          costs += peri * len(visited)
+          costs += peri
           all_visited = all_visited.union(visited)
 
     return costs
 
+
+  def part_2_2(self):
+    self.fenced = set()
+    costs = 0
+    for r, row in enumerate(self.g.grid):
+      for c, value in enumerate(row):
+        cur = (r, c)
+        for dir in DIRECTIONS_4:
+          next = self.g.get_moved(dir, cur)
+          is_wall = not self.g.is_in_range(next)
+          is_diff_value = self.g.get(next) != value
+          should_fence = is_wall or is_diff_value
+          if should_fence:
+            fenced.add((cur, dir))
+            if not is_paid(cur, dir):
+              cost += 1
+
+    return costs
 
 
 # setup
