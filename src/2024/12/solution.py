@@ -10,7 +10,7 @@ class Day(Solution):
       Direction.LEFT: [Direction.UP, Direction.DOWN],
       Direction.RIGHT: [Direction.UP, Direction.DOWN],
     }
-    
+
 
   def part_1(self):
     all_visited = set()
@@ -37,9 +37,9 @@ class Day(Solution):
     return costs
 
 
-  def is_paid(cell: tuple[int, int], dir: Direction):
-    for fence in self.g.get_all_moved(self.lookup[dir], cell):
-      if fence in self.fences():
+  def is_paid(self, cell: tuple[int, int], dir: Direction, value):
+    for neighbour in self.g.get_all_moved(self.lookup[dir], cell):
+      if (neighbour, value, dir) in self.fenced:
         return True
 
     return False
@@ -60,14 +60,16 @@ class Day(Solution):
           for cur in dfs:
             for dir in DIRECTIONS_4:
               next = self.g.get_moved(dir, cur)
-              if not self.g.is_in_range(next) or self.g.get(next) != value and not is_paid(cur, dir):
+              should_fence = not self.g.is_in_range(next) or self.g.get(next) != value
+              if should_fence:
+                self.fenced.add((cur, value, dir))
+                if not self.is_paid(cur, dir, value):
                   peri += 1
               elif self.g.is_in_range(next) and next not in visited and self.g.get(next) == value:
                 visited.add(next)
                 dfs.append(next)
-              fenced.add((cur, dir))
 
-          costs += peri
+          costs += peri * len(visited)
           all_visited = all_visited.union(visited)
 
     return costs
@@ -82,19 +84,20 @@ class Day(Solution):
         for dir in DIRECTIONS_4:
           next = self.g.get_moved(dir, cur)
           is_wall = not self.g.is_in_range(next)
-          is_diff_value = self.g.get(next) != value
-          should_fence = is_wall or is_diff_value
+          should_fence = is_wall or self.g.get(next) != value
           if should_fence:
-            fenced.add((cur, dir))
-            if not is_paid(cur, dir):
-              cost += 1
+            self.fenced.add((cur, dir))
+            if not self.is_paid(cur, dir):
+              costs += 1
 
     return costs
 
 
 # setup
-test_input_file, input_file = 'test_input.txt', 'input.txt'
+test_input_file, test_input_file_2, input_file = 'test_input.txt', 'test_input_2.txt', 'input.txt'
 test, real = Day(__file__, test_input_file, '[test]'), Day(__file__, input_file, '[real]')
+test2 = Day(__file__, test_input_file_2, '[test2]')
+test3 = Day(__file__, 'test_input_3.txt', '[test3]')
 
 # part 1
 print(colourify(Colour.LIGHT_BLUE, '------- part 1 -------'))
@@ -103,5 +106,9 @@ assert_equal(lambda: real.part_1(), 1483212, title=real.title)
 
 # part 2
 print(colourify(Colour.LIGHT_BLUE, '\n------- part 2 -------'))
-assert_equal(lambda: real.part_2(), 1206, title=real.title)
+assert_equal(lambda: test2.part_2(), 236, title=test.title)
+assert_equal(lambda: test3.part_2(), 368, title=test.title)
+assert_equal(lambda: test.part_2(), 1206, title=test.title)
+# assert_equal(lambda: test.part_2_2(), 1206, title=test.title)
+assert_not_equal(lambda: real.part_2(), 897298, title=real.title)
 assert_equal(lambda: real.part_2(), None, title=real.title)

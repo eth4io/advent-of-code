@@ -26,5 +26,5 @@ assert_equal(lambda: real.part_1(), None, title=real.title)
 
 # part 2
 print(colourify(Colour.LIGHT_BLUE, '\n------- part 2 -------'))
-assert_equal(lambda: real.part_2(), None, title=real.title)
+assert_equal(lambda: test.part_2(), None, title=test.title)
 assert_equal(lambda: real.part_2(), None, title=real.title)
