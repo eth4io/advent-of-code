@@ -11,9 +11,11 @@ class Direction(Enum):
   DOWN_RIGHT = [1, 1]
   DOWN_LEFT = [1, -1]
   UP_LEFT = [-1, -1]
-  
 
 
+
+DIRECTIONS_VERTICAL = [Direction.UP, Direction.DOWN]
+DIRECTIONS_HORIZONTAL = [Direction.RIGHT, Direction.LEFT]
 DIRECTIONS_4 = [Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT]
 DIRECTIONS_8 = [Direction.UP, Direction.UP_RIGHT, Direction.RIGHT, Direction.DOWN_RIGHT, Direction.DOWN, Direction.DOWN_LEFT, Direction.LEFT, Direction.UP_LEFT]
 DIRECTIONS_DIAGONAL = [Direction.UP_RIGHT, Direction.DOWN_RIGHT, Direction.DOWN_LEFT, Direction.UP_LEFT]

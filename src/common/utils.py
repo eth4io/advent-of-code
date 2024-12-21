@@ -4,13 +4,13 @@ import os
 import threading
 import re
 from enum import Enum
-from collections import Counter, defaultdict, OrderedDict
+from collections import Counter, defaultdict, OrderedDict, deque
 from itertools import combinations
 from sortedcontainers import SortedDict
 from typing import Callable
 from src.common.base_solution import Solution
 from src.common.colour_utils import colourify, Colour
-from src.common.grid import Grid, Direction, DIRECTIONS_4, DIRECTIONS_8
+from src.common.grid import Grid, Direction, DIRECTIONS_4, DIRECTIONS_8, DIRECTIONS_VERTICAL, DIRECTIONS_HORIZONTAL, DIRECTIONS_DIAGONAL
 from src.common.graph import Graph
 from functools import cache
 from time import time
@@ -62,7 +62,7 @@ def assert_not_equal(func: Callable[..., any], expected: any=None, title: str=No
     return False
   is_expected = result.result == expected
   if not is_expected:
-    display_result = f"{colourify(Colour.GREEN, '[pass]')} {colourify(Colour.GREEN, result.result)}"
+    display_result = f"{colourify(Colour.GREEN, '[pass]')} {colourify(Colour.GREEN, result.result)} != expected false {colourify(Colour.RED, expected)}"
   else:
     display_result = f"{colourify(Colour.RED, '[fail]')} {colourify(Colour.RED, result.result)} == expected false {colourify(Colour.GREEN, expected)}"
 
