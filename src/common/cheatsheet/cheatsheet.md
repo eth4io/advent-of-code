@@ -293,6 +293,21 @@ def lengthOfLIS(self, nums: List[int]) -> int:
   return len(sub)
 ```
 ## Graph
+### bfs and dfs
+```
+from collections import deque
+
+start = (0, 0)
+deq = deque([start])
+visited = {start} # init a set with elements
+while deq:
+  cur = deq.popleft() # popleft() for bfs, pop() for dfs
+
+  for next in cur.next():
+    if next not in visited:
+      visited.add(next)
+      deq.append(next)
+```
 ### Clone Graph
 ```python
 def __init__(self):
